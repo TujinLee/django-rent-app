@@ -14,10 +14,10 @@
 	<div id="details">
 		<h1>Filtrowanie</h1>
 		<div id="details_inside">
-			<p> Cena min :  <input type="text" name="cenamin" placeholder="cena" onkeyup="filter_min(this)" > zl</p></br>
-			 <p> Cena max: <input type="text" name="cenamax" placeholder="cena" onkeyup="filter_max(this)" > zl</p></br>
+			<p> Cena min :  <input id="cenamin" type="text" name="cenamin" placeholder="cena" onkeyup="filter_min(this)" > zl</p></br>
+			 <p> Cena max: <input id="cenamax" type="text" name="cenamax" placeholder="cena" onkeyup="filter_max(this)" > zl</p></br>
 			<p>  Liczba pokoi: <p id="lpval">3</p>
-			<input id="lpslide" type="range" name="cenamax" min="1" max="5"  >
+			<input id="lpslide" type="range" name="cenamax" min="1" max="5" >
 			</p></br>
 			<p>  Odleglosc: <p id="odlval">13</p>km
 			<input id="odlslide" type="range" name="cenamax" min="5" max="20"  >
@@ -32,7 +32,7 @@
 			</iframe>
 		</div>
 	</div>
-	<input id="id_car_id" type="hidden" name="id_car" value="">
+	<input id="id_car_id" type="hidden" name="id_car" value="0">
     {% if user.is_authenticated %}
 	<input id="reserve" type="submit" value="Zarezerwuj">
     {% endif %}

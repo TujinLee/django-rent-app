@@ -1,28 +1,50 @@
+
   function filter_min(element) {
       var value = $(element).val();
+      var maxvalue = $('#cenamax').val();
       console.log(value);
       $("#cars_list > li").each(function() {
-          if(parseInt($(this).attr('data-cena')) >= value){
+        if(maxvalue != ""){
+          if(parseInt($(this).attr('data-cena')) >= value && parseInt($(this).attr('data-cena')) <= maxvalue){
             $(this).show();
           } else {
             console.log(parseInt($(this).attr('data-cena')));
             $(this).hide();
           }
+        } else {
+           if(parseInt($(this).attr('data-cena')) >= value){
+            $(this).show();
+          } else {
+            console.log(parseInt($(this).attr('data-cena')));
+            $(this).hide();
+          }
+        } 
       });
   }
 
   function filter_max(element) {
       var value = $(element).val();
+      var minvalue = $('#cenamin').val();
       console.log(value);
       $("#cars_list > li").each(function() {
-          if(parseInt($(this).attr('data-cena')) <= value){
+        if(minvalue != ""){
+          if(parseInt($(this).attr('data-cena')) <= value && parseInt($(this).attr('data-cena')) >= minvalue){
             $(this).show();
           } else {
             console.log(parseInt($(this).attr('data-cena')));
             $(this).hide();
           }
+        } else {
+            if(parseInt($(this).attr('data-cena')) <= value){
+              $(this).show();
+             } else {
+              console.log(parseInt($(this).attr('data-cena')));
+              $(this).hide();
+            }
+        }
       });
   }
+
 $(document).ready( function(){
 
   $(".car").click(function(){
@@ -37,7 +59,7 @@ $(document).ready( function(){
       $("#maps_place").attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyA0cHSHoigfYxRi3du5cZsE6BTk5wxGQ0g&q='+ $(this).attr('data-miasto')+'+'+ $(this).attr('data-adres'));
   });
 
-  $("#days").change(function(){
+  $("#days").keydown(function(){
       var cost = parseInt($(this).attr('data-cena')) * parseInt($(this).val());
       $("#cost_final").html(cost);
   });
@@ -45,6 +67,15 @@ $(document).ready( function(){
   $("#lpslide").change(function(){
     var value = $(this).val();
     $("#lpval").html(value);
+      $("#cars_list > li").each(function() {
+            if (parseInt($(this).attr('data-pokoje')) == parseInt(value)) {
+                console.log(value);
+                $(this).show();
+            }
+            else {
+                $(this).hide();
+            }
+      });
   });
 
     $("#odlslide").change(function(){
