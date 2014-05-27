@@ -4,18 +4,18 @@
 		<ul id="cars_list">
 				{% for o in car_entry %}
 				<li class="car" data-id="{{o.id}}" data-miasto="{{o.miasto}}"  data-adres="{{o.adres}}"  data-cena="{{o.cena}}"  data-pokoje="{{o.licz_pokoi}}"  data-opis="{{o.opis}}">
-						<img class="car_img" src={{o.zdj_link}} />
+					<img class="car_img" src={{o.zdj_link}} />
 					<p class="car_name">{{o.adres}} {{o.miasto}}</p>
 					<p class="car_params">{{o.opis}}</br> Liczba pokoi: {{o.licz_pokoi}} Cena za dzien: {{o.cena}}</p>
-					</li>
+				</li>
 				{% endfor %}
 			</ul>
 	</div>
 	<div id="details">
 		<h1>Filtrowanie</h1>
 		<div id="details_inside">
-			<p> Cena min :  <input type="text" name="cenamin" placeholder="cena" onkeyup="filter(this)" > zl</p></br>
-			 <p> Cena max: <input type="text" name="cenamax" placeholder="cena" > zl</p></br>
+			<p> Cena min :  <input type="text" name="cenamin" placeholder="cena" onkeyup="filter_min(this)" > zl</p></br>
+			 <p> Cena max: <input type="text" name="cenamax" placeholder="cena" onkeyup="filter_max(this)" > zl</p></br>
 			<p>  Liczba pokoi: <p id="lpval">3</p>
 			<input id="lpslide" type="range" name="cenamax" min="1" max="5"  >
 			</p></br>

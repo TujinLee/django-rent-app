@@ -1,12 +1,25 @@
-  function filter(element) {
+  function filter_min(element) {
       var value = $(element).val();
-
+      console.log(value);
       $("#cars_list > li").each(function() {
-          if ($(this).attr('data-cena').search(value) > -1) {
-              $(this).show();
+          if(parseInt($(this).attr('data-cena')) >= value){
+            $(this).show();
+          } else {
+            console.log(parseInt($(this).attr('data-cena')));
+            $(this).hide();
           }
-          else {
-              $(this).hide();
+      });
+  }
+
+  function filter_max(element) {
+      var value = $(element).val();
+      console.log(value);
+      $("#cars_list > li").each(function() {
+          if(parseInt($(this).attr('data-cena')) <= value){
+            $(this).show();
+          } else {
+            console.log(parseInt($(this).attr('data-cena')));
+            $(this).hide();
           }
       });
   }
