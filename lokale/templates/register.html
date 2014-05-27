@@ -1,0 +1,19 @@
+
+<form action="../register/" method="post"> 
+{% csrf_token %}
+	<div id="registration">
+		<div id = "fields">
+
+			 <input class="short" type="text" name="login" placeholder="Login" required>
+			  <input class="short" type="password" name="haslo" placeholder="Haslo" required>
+			  <input class="long" type="email" name="email" placeholder="Mail" required>
+		</div>
+	</div>
+	<div id="details">
+		<div id="roa">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat ante molestie velit luctus posuere. Mauris lacinia egestas lacus. Curabitur ac lectus sapien. Aliquam et ullamcorper nulla. Proin enim magna, tincidunt sit amet purus at, malesuada porta nunc. Mauris congue sed est et interdum. Suspendisse sit amet porta mauris, ac auctor erat. Nam tincidunt enim ut mi porttitor porta. Suspendisse elit leo, ultricies fermentum purus sit amet, dictum gravida massa. Nullam consectetur nisl auctor viverra consequat. Duis luctus justo id neque lobortis lacinia. Maecenas feugiat luctus ligula sit amet congue. Sed dapibus, odio eget tincidunt iaculis, orci sem pretium dolor, et laoreet odio arcu id urna. In vehicula metus sit amet venenatis suscipit. Morbi lacus sapien, congue sed accumsan et, pulvinar eu quam.
+		</div>
+		<input id="accept_roa" type="radio" value="accept" required>Akceptuj
+	</div>
+	<input id="register" type="submit" value="Zarejestruj">
+</form>
