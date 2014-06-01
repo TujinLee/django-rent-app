@@ -1,10 +1,10 @@
 django-rent-app
 ===============
 
-Simple Django House Renting app
+###Simple Django House Renting app
 
 
-How to install django (mac os x) :
+####How to install django (mac os x) :
 - install homebrew :
 ```
 ruby `-e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
@@ -35,7 +35,7 @@ easy_install django
 easy_install PIL
 ```
 
-How to run this project (python and django required) :
+####How to run this project (python and django required) :
 - type in console :
 ```
 cd django-rent-app
