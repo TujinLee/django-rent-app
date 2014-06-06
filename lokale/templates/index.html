@@ -16,13 +16,16 @@
 		<a href="../main" style="color: white"><p>Lokale.pl</p></a>
 		</div>
 		<div id="menu">
+			<a href="../place_view">Przegladanie</a> | 
 			{% if user.is_authenticated %}
-			<a href="../logout_me"> {{ user.username }}, wyloguj</a> |
+			<a href="../add_place">Dodaj</a> | 
+			<a href="../view_profile">{{ user.username }}</a> |
+			<a href="../logout_me">Wyloguj</a>
 			{% else %}
 			<a href="../login">Logowanie</a> |
 			<a href="../register">Rejestracja</a> | 
 			{% endif %}
-			<a href="../place_view">Przegladanie</a>
+			
 		</div>
 	</header>
 	<section id='main_page'>

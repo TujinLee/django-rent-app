@@ -1,0 +1,15 @@
+<form action="../add_place/" method="post"> 
+{% csrf_token %}
+	<div id="place_adding">
+		<div id = "fields">
+
+			  <input class="short" type="text" name="adres" placeholder="Adres" required>
+			  <input class="short" type="text" name="miasto" placeholder="Miasto" required>
+			  <input class="short" type="number" name="liczba_pok" placeholder="Liczba pokoi" required>
+			  <input class="short" type="number" name="cena" placeholder="Cena za miesiac" required>
+			  <input class="short" type="text" name="opis" placeholder="Opis" required>
+			  <input class="short" type="text" name="link_zdj" placeholder="Link do zdjecia" required>
+		</div>
+	</div>
+	<input id="register" type="submit" value="Dodaj">
+</form>

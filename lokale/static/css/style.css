@@ -59,7 +59,7 @@ i { font-family: quicksandlight_italic; }
 	border: 2px solid #999999;
 }
 
-#cars, #registration, #car_summary
+#cars, #registration, #car_summary, #place_adding
 {
 	border: 2px solid #dddddd;
 	width: 650px;
@@ -70,6 +70,23 @@ i { font-family: quicksandlight_italic; }
 	overflow-y: auto;
 }
 
+
+#as_owner, #as_client
+{
+	border: 2px solid #dddddd;
+	width: 525px;
+	height: 400px;
+	float: left;
+	margin-top: 150px;
+	margin-left: 75px;
+	overflow-y: auto;
+}
+#as_owner h1, #as_client h1
+{
+	font-weight: bold;
+	font-size: 25px;
+	margin: 10px;
+}
 
 .car 
 {
@@ -193,7 +210,7 @@ a {
 
 }
 
-#registration #fields
+#registration #fields, #place_adding #fields
 {
 	height: 300px;
 	width: 500px;
@@ -201,7 +218,27 @@ a {
 	margin-top: 115px;
 }
 
-#registration input
+#edit_profile{
+	height: 130px;
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 15px;
+	border: 2px solid red;
+}
+
+#edit_profile input {
+	margin-top: 20px;
+	margin-right: 20px;
+	text-align: center;
+	font-size: 20px;
+	outline: none;
+	border: 1px solid #999999;
+}
+#edit_profile input[type="button"]{
+	font-size: 15px;
+}
+
+#registration input, #place_adding input
 {
 	margin-top: 20px;
 	margin-right: 20px;
@@ -318,6 +355,25 @@ li {
 #details_inside p input[type="range"]{
 	width: 150px;
 }
+
 #lpval {
 	margin-left: 5px;
+}
+
+.place {
+	border: 1px solid gray;
+	margin: 5px;
+	padding: 2px;
+}
+
+#accept_offer, #decline_offer {
+	font-size: 18px;
+}
+
+#accept_offer {
+	color: green;
+}
+
+#decline_offer {
+	color: red;
 }

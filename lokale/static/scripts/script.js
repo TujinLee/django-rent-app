@@ -82,9 +82,4 @@ $(document).ready( function(){
     var value = $(this).val();
     $("#odlval").html(value);
   });
-
-
 });
-
-
-
