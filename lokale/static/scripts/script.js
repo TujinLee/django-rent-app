@@ -1,85 +1,114 @@
+var minPrice = null,
+    maxPrice = null,
+    numRooms = null,
+    center = null,
+    radius = null;
 
-  function filter_min(element) {
-      var value = $(element).val();
-      var maxvalue = $('#cenamax').val();
-      console.log(value);
-      $("#cars_list > li").each(function() {
-        if(maxvalue != ""){
-          if(parseInt($(this).attr('data-cena')) >= value && parseInt($(this).attr('data-cena')) <= maxvalue){
-            $(this).show();
-          } else {
-            console.log(parseInt($(this).attr('data-cena')));
-            $(this).hide();
-          }
-        } else {
-           if(parseInt($(this).attr('data-cena')) >= value){
-            $(this).show();
-          } else {
-            console.log(parseInt($(this).attr('data-cena')));
-            $(this).hide();
-          }
-        } 
-      });
-  }
+function filter() {
+  console.log("min price: " + minPrice + "\n" +
+              "max price: " + maxPrice + "\n" +
+              "num rooms: " + numRooms + "\n" +
+              "radius: " + radius);
+  $("#cars_list > li").each(function() {
+    var element = $(this);
+    var elementId = element.attr('data-id');
+    var currentPrice = parseInt(element.attr('data-cena'));
+    var currentRooms = parseInt(element.attr('data-pokoje'));
+    var currentLat = element.attr('data-lat');
+    var currentLong = element.attr('data-long');
+    var pass = true;
+    if(minPrice != null && currentPrice < minPrice) pass = false;
+    if(maxPrice != null && currentPrice > maxPrice) pass = false;
+    if(numRooms != null && currentRooms != numRooms) pass = false;
+    if(radius != null && !insideCircle(currentLat, currentLong)) pass = false;
 
-  function filter_max(element) {
-      var value = $(element).val();
-      var minvalue = $('#cenamin').val();
-      console.log(value);
-      $("#cars_list > li").each(function() {
-        if(minvalue != ""){
-          if(parseInt($(this).attr('data-cena')) <= value && parseInt($(this).attr('data-cena')) >= minvalue){
-            $(this).show();
-          } else {
-            console.log(parseInt($(this).attr('data-cena')));
-            $(this).hide();
-          }
-        } else {
-            if(parseInt($(this).attr('data-cena')) <= value){
-              $(this).show();
-             } else {
-              console.log(parseInt($(this).attr('data-cena')));
-              $(this).hide();
-            }
-        }
-      });
+    if(pass) {
+      showMarker(elementId);
+      element.show();
+    } else {
+      element.hide();
+      hideMarker(elementId);
+    }
+  });
+}
+
+function filter_setMin(element) {
+  var value = $(element).val();
+  var minValue = $('#cenamin').val();
+  minPrice = (minValue != "") ? value : null;
+  filter();
+}
+     
+function filter_setMax(element) {
+  var value = $(element).val();
+  var maxValue = $('#cenamax').val();
+  maxPrice = (maxValue != "") ? value : null;
+  filter();
+}
+
+function filter_setRooms(number) {
+  numRooms = number >= 1 ? number : null;
+  $('#lpval').html(number >= 1 ? numRooms : "~~");
+  filter();
+}
+
+function filter_setRadius(number) {
+  radius = number >= 1 ? 1000 * number : null;
+  $('#odlval').html(number >= 1 ? number : "~~");
+  setMaxDist(radius);
+  filter();
+}
+
+function filter_setLocation(element) {
+  var location = $('#lokalizacja').val();
+  if(location != "") {
+    setLocation(location);
+  } else {
+    setLocation(null);
   }
+  filter();
+}
+
+function apartmentClick(element) {
+  if($(element).hasClass("selected"))
+  {
+    $(element).removeClass("selected");
+  } else {
+    $('li').removeClass("selected");
+    $(element).addClass("selected");
+    $('#id_car_id').val($(element).attr('data-id'));
+  }
+}
+
+function updateLatLong() {
+  $("#cars_list > li").each(function() {
+    var element = $(this);
+    var elementId = element.attr('data-id');
+    var currentCity = element.attr('data-miasto');
+    var currentAddress = element.attr('data-adres');
+    getPosition(currentCity, currentAddress, function(lat, lng) {
+      if(lat != null && lng != null) {
+        element.attr('data-lat', lat);
+        element.attr('data-long', lng);
+        createMarker(elementId, lat, lng, currentCity + ', ' + currentAddress, function(){
+          apartmentClick(element);
+          element.scrollIntoView();
+        })
+      }
+    });
+  });
+}
+
+function updateTime() {
+   var cost = parseInt($("#days").attr('data-cena')) * parseInt($("#days").val());
+   $("#cost_final").html(cost);
+}
 
 $(document).ready( function(){
-
-  $(".car").click(function(){
-      if($(this).hasClass("selected"))
-      {
-        $(this).removeClass("selected");
-      } else {
-        $('li').removeClass("selected");
-        $(this).addClass("selected");
-        $('#id_car_id').val($(this).attr('data-id'));
-      }
-      $("#maps_place").attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyA0cHSHoigfYxRi3du5cZsE6BTk5wxGQ0g&q='+ $(this).attr('data-miasto')+'+'+ $(this).attr('data-adres'));
-  });
-
-  $("#days").keydown(function(){
-      var cost = parseInt($(this).attr('data-cena')) * parseInt($(this).val());
-      $("#cost_final").html(cost);
-  });
-
-  $("#lpslide").change(function(){
-    var value = $(this).val();
-    $("#lpval").html(value);
-      $("#cars_list > li").each(function() {
-            if (parseInt($(this).attr('data-pokoje')) == parseInt(value)) {
-                console.log(value);
-                $(this).show();
-            }
-            else {
-                $(this).hide();
-            }
-      });
-  });
-
-    $("#odlslide").change(function(){
-    var value = $(this).val();
-    $("#odlval").html(value);
-  });
+  if(document.getElementById("map-canvas") != null) {
+    initMaps();
+  }
+  if(document.getElementById("cars_list") != null) {
+     updateLatLong();
+  }
 });

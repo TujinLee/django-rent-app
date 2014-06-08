@@ -8,7 +8,7 @@
 					</br>Miejsce: <b>{{o.adres}},{{o.miasto}} </b>
 					</br>Liczba pokoi: <b>{{o.licz_pokoi}}</b> 
 					</br>Cena za miesiac: <b>{{o.cena}}</b> </p></br>
-		<input id="days" type="text" name="days" placeholder="Ilosc miesiecy" data-cena="{{o.cena}}" required>
+		<input id="days" type="text" name="days" placeholder="Ilosc miesiecy" data-cena="{{o.cena}}" oninput="updateTime()" required>
 		</br>Cena za wybrane miesiace: <p id="cost_final">0{{cena}}</p>zl
 	</div>
 	<input id="rent" type="submit" value="Wypozycz">

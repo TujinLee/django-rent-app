@@ -3,7 +3,7 @@
 	<div id="cars">
 		<ul id="cars_list">
 				{% for o in car_entry %}
-				<li class="car" data-id="{{o.id}}" data-miasto="{{o.miasto}}"  data-adres="{{o.adres}}"  data-cena="{{o.cena}}"  data-pokoje="{{o.licz_pokoi}}"  data-opis="{{o.opis}}">
+				<li class="car" data-id="{{o.id}}" data-miasto="{{o.miasto}}"  data-adres="{{o.adres}}"  data-cena="{{o.cena}}"  data-pokoje="{{o.licz_pokoi}}"  data-opis="{{o.opis}}" onclick="apartmentClick(this)" data-long="" data-lat="">
 					<img class="car_img" src={{o.zdj_link}} />
 					<p class="car_name">{{o.adres}} {{o.miasto}}</p>
 					<p class="car_params">{{o.opis}}</br> Liczba pokoi: {{o.licz_pokoi}} Cena za dzien: {{o.cena}}</p>
@@ -14,22 +14,15 @@
 	<div id="details">
 		<h1>Filtrowanie</h1>
 		<div id="details_inside">
-			<p> Cena min :  <input id="cenamin" type="text" name="cenamin" placeholder="cena" onkeyup="filter_min(this)" > zl</p></br>
-			 <p> Cena max: <input id="cenamax" type="text" name="cenamax" placeholder="cena" onkeyup="filter_max(this)" > zl</p></br>
-			<p>  Liczba pokoi: <p id="lpval">3</p>
-			<input id="lpslide" type="range" name="cenamax" min="1" max="5" >
+			<p> Cena min <input id="cenamin" type="text" name="cenamin" placeholder="cena" onkeyup="filter_setMin(this)" > (zl) : </p></br>
+			 <p> Cena max <input id="cenamax" type="text" name="cenamax" placeholder="cena" onkeyup="filter_setMax(this)" > (zl) : </p></br>
+			<p>  Liczba pokoi: <p id="lpval" style="width: 30">~~</p> <input id="lpslide" type="range" name="cenamax" min="0" max="4" value="0" oninput="filter_setRooms(this.value)">
 			</p></br>
-			<p>  Odleglosc: <p id="odlval">13</p>km
-			<input id="odlslide" type="range" name="cenamax" min="5" max="20"  >
+			<p> Lokalizacja <input id="lokalizacja" type="text" name="lokalizacja" placeholder="Geolokalizacja" oninput="filter_setLocation(this)" > : </p></br>
+			<p>  Odleglosc: <p id="odlval" style="width: 30">~~</p>km
+			<input id="odlslide" type="range" name="cenamax" min="0" max="24" value="0" oninput="filter_setRadius(this.value)">
 			</p></br>
-			<iframe
-			  id="maps_place"
-			  width="380"
-			  height="200"
-			  frameborder="0" style="border:0"
-			  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0cHSHoigfYxRi3du5cZsE6BTk5wxGQ0g
-			    &q=Space+Needle,Seattle+WA">
-			</iframe>
+			<div id="map-canvas" style="position: fixed; width: 380; height: 325;"></div>
 		</div>
 	</div>
 	<input id="id_car_id" type="hidden" name="id_car" value="0">

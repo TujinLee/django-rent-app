@@ -16,7 +16,7 @@
 				{% for o in owner_entry %}
 				<li class="place" data-id="{{o.id}}">
 					<p class="place_name">Lokal: {{o.lokal_id}} Nick: {{o.wlasciciel_id}} </p>
-					<p class="place_name">Cena: {{o.cena}} Dni: {{o.ilosc}} <p align="right"> <a href="../accept_offer/?data-id={{o.id}}" data-id= "{{o.id}}" id="accept_offer"> V </a>
+					<p class="place_name">Cena: {{o.cena}} Miesiecy: {{o.ilosc}} <p align="right"> <a href="../accept_offer/?data-id={{o.id}}" data-id= "{{o.id}}" id="accept_offer"> V </a>
 					<a href="../decline_offer/?data-id={{o.id}}" id="decline_offer" data-id= "{{o.id}}" > X </a></p> </p>
 					
 				</li>
@@ -29,7 +29,7 @@
 				{% for o in client_entry %}
 				<li class="place" data-id="{{o.id}}">
 					<p class="place_name">Lokal: {{o.lokal_id}} Nick: {{o.wlasciciel_id}}  </p>
-					<p class="place_name">Cena: {{o.cena}} Dni: {{o.ilosc}}</p>
+					<p class="place_name">Cena: {{o.cena}} Miesiecy: {{o.ilosc}}</p>
 				</li>
 				{% endfor %}
 			</ul>
