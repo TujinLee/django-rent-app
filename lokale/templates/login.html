@@ -1,0 +1,12 @@
+<div id="login_div">
+	{% if form.errors %}
+	<p class="error">Zla nazwa uzytkownika lub haslo</p>
+	{% endif %}
+	<form action="../auth/" method="post">
+	 {% csrf_token %}
+		<input id="login_input" type="text" name ="username" placeholder="Nazwa uzytkownika" value='' required>
+		<input id="pass_input" type="password" name = "password"  placeholder="Haslo" value='' required>
+		<input  id="login" type="submit" value="Zaloguj">
+	</form>
+</div>
+

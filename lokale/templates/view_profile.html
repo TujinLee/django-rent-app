@@ -1,0 +1,37 @@
+<div id="edit_profile">
+<form action="../view_profile/" method="post"> 
+{% csrf_token %}
+		<div id = "fields">
+			 <input class="short" type="text" name="login" placeholder="Login" required disabled>
+			  <input class="short" type="password" name="haslo" placeholder="Haslo" required>
+			  <input class="long" type="email" name="email" placeholder="Mail" required>
+		</div>
+	<input id="save" type="submit" value="Zapisz">
+</form>
+</div>
+<div id="profile_lists">
+<div id="as_owner">
+<h1>Oferty na twoje</h1>
+		<ul id="place_list">
+				{% for o in owner_entry %}
+				<li class="place" data-id="{{o.id}}">
+					<p class="place_name">Lokal: {{o.lokal_id}} Nick: {{o.wlasciciel_id}} </p>
+					<p class="place_name">Cena: {{o.cena}} Dni: {{o.ilosc}} <p align="right"> <a href="../accept_offer/?data-id={{o.id}}" data-id= "{{o.id}}" id="accept_offer"> V </a>
+					<a href="../decline_offer/?data-id={{o.id}}" id="decline_offer" data-id= "{{o.id}}" > X </a></p> </p>
+					
+				</li>
+				{% endfor %}
+			</ul>
+	</div>
+	<div id="as_client">
+	<h1>Twoje oferty</h1>
+		<ul id="place_list">
+				{% for o in client_entry %}
+				<li class="place" data-id="{{o.id}}">
+					<p class="place_name">Lokal: {{o.lokal_id}} Nick: {{o.wlasciciel_id}}  </p>
+					<p class="place_name">Cena: {{o.cena}} Dni: {{o.ilosc}}</p>
+				</li>
+				{% endfor %}
+			</ul>
+	</div>
+</div>
