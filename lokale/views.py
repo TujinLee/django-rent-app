@@ -14,6 +14,8 @@ from datetime import datetime
 from datetime import timedelta
 from datetime import date
 from django.db.models import Q
+from django.core.mail import send_mail
+
 
 def home(request):
     all_entries = list(Miejsce.objects.all()[:5])
@@ -181,3 +183,5 @@ def register(request):
 
 def register_success(request):
     return render_to_response('index.html',{'page':'register_success.html','user':request.user})
+
+

@@ -22,6 +22,7 @@ urlpatterns = patterns('',url(r'^$', 'lokale.views.home', name='home'),
                        url(r'^invalid/$', 'lokale.views.invalid_login'),
                        url(r'^place_reserve_success/$', 'lokale.views.place_reserve_success'),
                        url(r'^place_reserve_fail/$', 'lokale.views.place_reserve_fail'),
+                       url(r'^send_email/','lokale.views.send_email'),
     # Examples:
     # url(r'^$', 'Wypozyczalnia.views.home', name='home'),
     # url(r'^Wypozyczalnia/', include('Wypozyczalnia.Wypozyczalnia.urls')),
